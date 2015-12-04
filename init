@@ -1,0 +1,576 @@
+from build import encoder
+from layers import tanH, Sigmoid, RelU
+
+
+def test_ae(	
+			init_params,
+			build_params,
+			train_params,
+			flagy = True,
+		):
+	
+	ae = encoder(
+			init_params = init_params,
+			flagy = flagy 
+		       )
+			   
+	ae.buildit(
+			build_params = build_params,
+			flagy = flagy
+	          )    
+	   
+	ae.train(
+	   		train_params = train_params,
+			flagy = flagy
+		     )
+				
+### Boiler Plate ###
+if __name__ == '__main__':
+    
+	init_params = {
+					"n_train_batches" : 4,
+					"batch_size"	  : 4,
+					"img_ht"          : 32,
+					"img_wdt"         : 32,
+					"tile_ht"         : 2,
+					"tile_wdt"        : 2,
+					"output_folder"   : 'mom_n',
+					"rmse_folder"	  : 'rmse_mom_n',
+					"disp_flag"       : True,
+					"dataset"		  : 'face'
+					
+					}
+					
+	build_params = {
+					"learning_rate"  :	0.5,
+					"n_hidden_enc"   :  [ 256 ],
+					"n_hidden_dec"   :  [ 256 ],
+					"activation"	 :	[ Sigmoid ], 	
+					"cost_fun"		 :	'rmse',
+					"tied_weights"	 :  True,
+					"LR_decay"		 :  0.0007,
+					"begin_mom"		 :  0.4,
+					"end_mom"		 :  0.85,
+					"mom_thrs"		 :  100
+					}
+					
+	train_params = {
+					"training_epochs" : 400
+					}
+	
+	flagy = True
+					
+	test_ae(
+			init_params		= init_params,
+			build_params	= build_params,
+			train_params	= train_params,
+			flagy			= flagy,
+	)
+	
+"""
+	init_params = {
+					"n_train_batches" : 60,
+					"batch_size"	  : 100,
+					"img_ht"          : 32,
+					"img_wdt"         : 32,
+					"tile_ht"         : 10,
+					"tile_wdt"        : 10,
+					"output_folder"   : 'op_images_32',
+					"rmse_folder"	  : 'rmse_32',
+					"disp_flag"       : True
+					
+					}
+					
+	build_params = {
+					"learning_rate"  :	0.5,
+					"n_hidden_enc"   :  [ 32 ],
+					"n_hidden_dec"   :  [ 32 ],
+					"activation"	 :	[ Sigmoid ], 	
+					"cost_fun"		 :	'rmse',
+					"tied_weights"	 :  True,
+					"LR_decay"		 :  0.0007,
+					"begin_mom"		 :  0.4,
+					"end_mom"		 :  0.85,
+					"mom_thrs"		 :  200
+					}
+					
+	train_params = {
+					"training_epochs" : 400
+					}
+	
+	flagy = True
+					
+	test_ae(
+			init_params		= init_params,
+			build_params	= build_params,
+			train_params	= train_params,
+			flagy			= flagy,
+	)
+	init_params = {
+					"n_train_batches" : 60,
+					"batch_size"	  : 100,
+					"img_ht"          : 32,
+					"img_wdt"         : 32,
+					"tile_ht"         : 10,
+					"tile_wdt"        : 10,
+					"output_folder"   : 'op_images_64',
+					"rmse_folder"	  : 'rmse_64',
+					"disp_flag"       : True
+					
+					}
+					
+	build_params = {
+					"learning_rate"  :	0.5,
+					"n_hidden_enc"   :  [ 64 ],
+					"n_hidden_dec"   :  [ 64 ],
+					"activation"	 :	[ Sigmoid ], 	
+					"cost_fun"		 :	'rmse',
+					"tied_weights"	 :  True,
+					"LR_decay"		 :  0.0007,
+					"begin_mom"		 :  0.4,
+					"end_mom"		 :  0.85,
+					"mom_thrs"		 :  200
+					}
+					
+	train_params = {
+					"training_epochs" : 400
+					}
+	
+	flagy = True
+					
+	test_ae(
+			init_params		= init_params,
+			build_params	= build_params,
+			train_params	= train_params,
+			flagy			= flagy,
+	)
+	init_params = {
+					"n_train_batches" : 60,
+					"batch_size"	  : 100,
+					"img_ht"          : 32,
+					"img_wdt"         : 32,
+					"tile_ht"         : 10,
+					"tile_wdt"        : 10,
+					"output_folder"   : 'op_images_128',
+					"rmse_folder"	  : 'rmse_128',
+					"disp_flag"       : True
+					
+					}
+					
+	build_params = {
+					"learning_rate"  :	0.5,
+					"n_hidden_enc"   :  [ 128 ],
+					"n_hidden_dec"   :  [ 128 ],
+					"activation"	 :	[ Sigmoid ], 	
+					"cost_fun"		 :	'rmse',
+					"tied_weights"	 :  True,
+					"LR_decay"		 :  0.0007,
+					"begin_mom"		 :  0.4,
+					"end_mom"		 :  0.85,
+					"mom_thrs"		 :  200
+					}
+					
+	train_params = {
+					"training_epochs" : 400
+					}
+	
+	flagy = True
+					
+	test_ae(
+			init_params		= init_params,
+			build_params	= build_params,
+			train_params	= train_params,
+			flagy			= flagy,
+	)
+	init_params = {
+					"n_train_batches" : 60,
+					"batch_size"	  : 100,
+					"img_ht"          : 32,
+					"img_wdt"         : 32,
+					"tile_ht"         : 10,
+					"tile_wdt"        : 10,
+					"output_folder"   : 'op_images_512',
+					"rmse_folder"	  : 'rmse_512',
+					"disp_flag"       : True
+					
+					}
+					
+	build_params = {
+					"learning_rate"  :	0.5,
+					"n_hidden_enc"   :  [ 512 ],
+					"n_hidden_dec"   :  [ 512 ],
+					"activation"	 :	[ Sigmoid ], 	
+					"cost_fun"		 :	'rmse',
+					"tied_weights"	 :  True,
+					"LR_decay"		 :  0.0007,
+					"begin_mom"		 :  0.4,
+					"end_mom"		 :  0.85,
+					"mom_thrs"		 :  200
+					}
+					
+	train_params = {
+					"training_epochs" : 400
+					}
+	
+	flagy = True
+					
+	test_ae(
+			init_params		= init_params,
+			build_params	= build_params,
+			train_params	= train_params,
+			flagy			= flagy,
+	)
+	
+	init_params = {
+					"n_train_batches" : 60,
+					"batch_size"	  : 100,
+					"img_ht"          : 32,
+					"img_wdt"         : 32,
+					"tile_ht"         : 10,
+					"tile_wdt"        : 10,
+					"output_folder"   : 'op_images_256_lr0.1',
+					"rmse_folder"	  : 'rmse_256_lr0.1',
+					"disp_flag"       : True
+					
+					}
+					
+	build_params = {
+					"learning_rate"  :	0.1,
+					"n_hidden_enc"   :  [ 256 ],
+					"n_hidden_dec"   :  [ 256 ],
+					"activation"	 :	[ Sigmoid ], 	
+					"cost_fun"		 :	'rmse',
+					"tied_weights"	 :  True,
+					"LR_decay"		 :  0.0007,
+					"begin_mom"		 :  0.4,
+					"end_mom"		 :  0.85,
+					"mom_thrs"		 :  200
+					}
+					
+	train_params = {
+					"training_epochs" : 400
+					}
+	
+	flagy = True
+					
+	test_ae(
+			init_params		= init_params,
+			build_params	= build_params,
+			train_params	= train_params,
+			flagy			= flagy,
+	)
+	
+	init_params = {
+					"n_train_batches" : 60,
+					"batch_size"	  : 100,
+					"img_ht"          : 32,
+					"img_wdt"         : 32,
+					"tile_ht"         : 10,
+					"tile_wdt"        : 10,
+					"output_folder"   : 'op_images_256_lr1.0',
+					"rmse_folder"	  : 'rmse_256_lr1.0',
+					"disp_flag"       : True
+					
+					}
+					
+	build_params = {
+					"learning_rate"  :	1,
+					"n_hidden_enc"   :  [ 256 ],
+					"n_hidden_dec"   :  [ 256 ],
+					"activation"	 :	[ Sigmoid ], 	
+					"cost_fun"		 :	'rmse',
+					"tied_weights"	 :  True,
+					"LR_decay"		 :  0.0007,
+					"begin_mom"		 :  0.4,
+					"end_mom"		 :  0.85,
+					"mom_thrs"		 :  200
+					}
+					
+	train_params = {
+					"training_epochs" : 400
+					}
+	
+	flagy = True
+					
+	test_ae(
+			init_params		= init_params,
+			build_params	= build_params,
+			train_params	= train_params,
+			flagy			= flagy,
+	)
+	
+	init_params = {
+					"n_train_batches" : 60,
+					"batch_size"	  : 100,
+					"img_ht"          : 32,
+					"img_wdt"         : 32,
+					"tile_ht"         : 10,
+					"tile_wdt"        : 10,
+					"output_folder"   : 'op_images_256_lr0.01',
+					"rmse_folder"	  : 'rmse_256_lr0.01',
+					"disp_flag"       : True
+					
+					}
+					
+	build_params = {
+					"learning_rate"  :	0.01,
+					"n_hidden_enc"   :  [ 256 ],
+					"n_hidden_dec"   :  [ 256 ],
+					"activation"	 :	[ Sigmoid ], 	
+					"cost_fun"		 :	'rmse',
+					"tied_weights"	 :  True,
+					"LR_decay"		 :  0.0007,
+					"begin_mom"		 :  0.4,
+					"end_mom"		 :  0.85,
+					"mom_thrs"		 :  200
+					}
+					
+	train_params = {
+					"training_epochs" : 400
+					}
+	
+	flagy = True
+					
+	test_ae(
+			init_params		= init_params,
+			build_params	= build_params,
+			train_params	= train_params,
+			flagy			= flagy,
+	)
+	
+	init_params = {
+					"n_train_batches" : 60,
+					"batch_size"	  : 100,
+					"img_ht"          : 32,
+					"img_wdt"         : 32,
+					"tile_ht"         : 10,
+					"tile_wdt"        : 10,
+					"output_folder"   : 'op_images_256_128',
+					"rmse_folder"	  : 'rmse_256_128',
+					"disp_flag"       : True
+					
+					}
+					
+	build_params = {
+					"learning_rate"  :	0.5,
+					"n_hidden_enc"   :  [ 256, 128 ],
+					"n_hidden_dec"   :  [ 128, 256 ],
+					"activation"	 :	[ Sigmoid, Sigmoid ], 	
+					"cost_fun"		 :	'rmse',
+					"tied_weights"	 :  True,
+					"LR_decay"		 :  0.0007,
+					"begin_mom"		 :  0.4,
+					"end_mom"		 :  0.85,
+					"mom_thrs"		 :  200
+					}
+					
+	train_params = {
+					"training_epochs" : 400
+					}
+	
+	flagy = True
+					
+	test_ae(
+			init_params		= init_params,
+			build_params	= build_params,
+			train_params	= train_params,
+			flagy			= flagy,
+	)
+
+	init_params = {
+					"n_train_batches" : 60,
+					"batch_size"	  : 100,
+					"img_ht"          : 32,
+					"img_wdt"         : 32,
+					"tile_ht"         : 10,
+					"tile_wdt"        : 10,
+					"output_folder"   : 'op_images_512_256',
+					"rmse_folder"	  : 'rmse_512_256',
+					"disp_flag"       : True
+					
+					}
+					
+	build_params = {
+					"learning_rate"  :	0.5,
+					"n_hidden_enc"   :  [ 512, 256 ],
+					"n_hidden_dec"   :  [ 256, 512 ],
+					"activation"	 :	[ Sigmoid, Sigmoid ], 	
+					"cost_fun"		 :	'rmse',
+					"tied_weights"	 :  True,
+					"LR_decay"		 :  0.0007,
+					"begin_mom"		 :  0.4,
+					"end_mom"		 :  0.85,
+					"mom_thrs"		 :  200
+					}
+					
+	train_params = {
+					"training_epochs" : 400
+					}
+	
+	flagy = True
+					
+	test_ae(
+			init_params		= init_params,
+			build_params	= build_params,
+			train_params	= train_params,
+			flagy			= flagy,
+	)
+
+	init_params = {
+					"n_train_batches" : 60,
+					"batch_size"	  : 100,
+					"img_ht"          : 32,
+					"img_wdt"         : 32,
+					"tile_ht"         : 10,
+					"tile_wdt"        : 10,
+					"output_folder"   : 'op_images_128_64',
+					"rmse_folder"	  : 'rmse_128_64',
+					"disp_flag"       : True
+					
+					}
+					
+	build_params = {
+					"learning_rate"  :	0.5,
+					"n_hidden_enc"   :  [ 128, 64 ],
+					"n_hidden_dec"   :  [ 64, 128 ],
+					"activation"	 :	[ Sigmoid, Sigmoid ], 	
+					"cost_fun"		 :	'rmse',
+					"tied_weights"	 :  True,
+					"LR_decay"		 :  0.0007,
+					"begin_mom"		 :  0.4,
+					"end_mom"		 :  0.85,
+					"mom_thrs"		 :  200
+					}
+					
+	train_params = {
+					"training_epochs" : 400
+					}
+	
+	flagy = True
+					
+	test_ae(
+			init_params		= init_params,
+			build_params	= build_params,
+			train_params	= train_params,
+			flagy			= flagy,
+	)
+
+	init_params = {
+					"n_train_batches" : 60,
+					"batch_size"	  : 100,
+					"img_ht"          : 32,
+					"img_wdt"         : 32,
+					"tile_ht"         : 10,
+					"tile_wdt"        : 10,
+					"output_folder"   : 'op_images_64_32',
+					"rmse_folder"	  : 'rmse_64_32',
+					"disp_flag"       : True
+					
+					}
+					
+	build_params = {
+					"learning_rate"  :	0.5,
+					"n_hidden_enc"   :  [ 64, 32 ],
+					"n_hidden_dec"   :  [ 32, 64 ],
+					"activation"	 :	[ Sigmoid, Sigmoid ], 	
+					"cost_fun"		 :	'rmse',
+					"tied_weights"	 :  True,
+					"LR_decay"		 :  0.0007,
+					"begin_mom"		 :  0.4,
+					"end_mom"		 :  0.85,
+					"mom_thrs"		 :  200
+					}
+					
+	train_params = {
+					"training_epochs" : 400
+					}
+	
+	flagy = True
+					
+	test_ae(
+			init_params		= init_params,
+			build_params	= build_params,
+			train_params	= train_params,
+			flagy			= flagy,
+	)
+
+	init_params = {
+					"n_train_batches" : 60,
+					"batch_size"	  : 100,
+					"img_ht"          : 32,
+					"img_wdt"         : 32,
+					"tile_ht"         : 10,
+					"tile_wdt"        : 10,
+					"output_folder"   : 'op_images_512_256_128',
+					"rmse_folder"	  : 'rmse_512_256_128',
+					"disp_flag"       : True
+					
+					}
+					
+	build_params = {
+					"learning_rate"  :	0.5,
+					"n_hidden_enc"   :  [ 512, 256, 128 ],
+					"n_hidden_dec"   :  [ 128, 256, 512 ],
+					"activation"	 :	[ Sigmoid, Sigmoid, Sigmoid ], 	
+					"cost_fun"		 :	'rmse',
+					"tied_weights"	 :  True,
+					"LR_decay"		 :  0.0007,
+					"begin_mom"		 :  0.4,
+					"end_mom"		 :  0.85,
+					"mom_thrs"		 :  200
+					}
+					
+	train_params = {
+					"training_epochs" : 400
+					}
+	
+	flagy = True
+					
+	test_ae(
+			init_params		= init_params,
+			build_params	= build_params,
+			train_params	= train_params,
+			flagy			= flagy,
+	)
+
+	init_params = {
+					"n_train_batches" : 60,
+					"batch_size"	  : 100,
+					"img_ht"          : 32,
+					"img_wdt"         : 32,
+					"tile_ht"         : 10,
+					"tile_wdt"        : 10,
+					"output_folder"   : 'op_images_256_cce',
+					"rmse_folder"	  : 'rmse_256_cce',
+					"disp_flag"       : True
+					
+					}
+					
+	build_params = {
+					"learning_rate"  :	0.5,
+					"n_hidden_enc"   :  [ 256 ],
+					"n_hidden_dec"   :  [ 256 ],
+					"activation"	 :	[ Sigmoid ], 	
+					"cost_fun"		 :	'cce',
+					"tied_weights"	 :  True,
+					"LR_decay"		 :  0.0007,
+					"begin_mom"		 :  0.4,
+					"end_mom"		 :  0.85,
+					"mom_thrs"		 :  200
+					}
+					
+	train_params = {
+					"training_epochs" : 400
+					}
+	
+	flagy = True
+					
+	test_ae(
+			init_params		= init_params,
+			build_params	= build_params,
+			train_params	= train_params,
+			flagy			= flagy,
+	)
+"""
+
+
